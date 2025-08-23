@@ -1,0 +1,31 @@
+<div class="table-container">
+  <h2>Leaderboard</h2>
+
+  @if (leaderboardEntries.length > 0) {
+    <table class="responsive-table">
+      <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Player</th>
+        <th>Score</th>
+        <th>Total Time (s)</th>
+        <th>Sessions Played</th>
+      </tr>
+      </thead>
+      <tbody>
+        @for (entry of leaderboardEntries; track entry.playerId) {
+          <tr>
+            <td>{{ entry.rank }}</td>
+            <td>{{ entry.playerName }}</td>
+            <td>{{ entry.totalScore }}</td>
+            <td>{{ (entry.totalTime / 1000) | number: '1.0-0' }}</td>
+            <td>{{ entry.sessionsPlayed }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+  @else {
+    <p>No leaderboard
+      }
+</div>

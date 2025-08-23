@@ -1,0 +1,30 @@
+@use '../styles/form-layout' as *;
+
+section {
+  margin: auto;
+  font-size: 36px;
+}
+
+.quizAnswerButton {
+  background-color: #737373;
+  color: white;
+  padding: 10px 16px;
+  margin: 10px 10px 10px 10px;
+  width: 600px;
+  height: auto;
+  font-size: 24px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.quizAnswerButton:hover {
+  background-color: #5da2c4;
+}
+.quizAnswerButton:disabled:hover {
+  background-color: #737373;
+}
+
+button {
+  width: 600px;
+}

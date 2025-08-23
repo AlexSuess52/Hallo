@@ -1,0 +1,29 @@
+<div class="table-container">
+  <h2>Registered Players</h2>
+
+  @if (players.length) {
+    <table class="responsive-table">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Created</th>
+      </tr>
+      </thead>
+      <tbody>
+        @for (player of players; track player.id) {
+          <tr>
+            <td>{{ player.id }}</td>
+            <td>{{ player.name }}</td>
+            <td>{{ player.userEmail || '-' }}</td>
+            <td>{{ player.createdAt }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+  @else {
+    <p>No players found.</p>
+  }
+</div>

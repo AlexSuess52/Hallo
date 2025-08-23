@@ -1,0 +1,45 @@
+<div class="layout-background">
+  <div class="main-container">
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+      <header>Register</header>
+
+      <input
+        type="text"
+        placeholder="Name"
+        formControlName="name"
+        class="auth-input"
+      />
+      @if (submitted && f['name'].errors) {
+        <div class="error-message">
+          @if (f['name'].hasError('required')) {
+            <div>Username is required</div>
+          }
+        </div>
+      }
+
+      <input
+        type="password"
+        placeholder="Password"
+        formControlName="password"
+        class="auth-input"
+      />
+      @if (submitted && f['password'].errors) {
+        <div class="error-message">
+          @if (f['password'].hasError('required')) {
+            <div>Password is required</div>
+          }
+        </div>
+      }
+
+      <button type="submit">Register</button>
+      <button type="button" (click)="redirectToLogin()">Back to Login</button>
+
+      @if (errorMessage) {
+        <div class="error-message">{{ errorMessage }}</div>
+      }
+    </form>
+
+  </div>
+</div>

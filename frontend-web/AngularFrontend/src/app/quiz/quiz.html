@@ -1,0 +1,38 @@
+<section>
+
+  <div>
+    <h2 class="input-style">Welcome to Online Quiz</h2>
+
+    <p >
+      <label class="select-style" for="methodSelect">Select Method</label><br />
+      <select id="methodSelect" name="method" [(ngModel)]="selectedMethod" (change)="toggleDifficulty()" required>
+        <!--        <option value="HARDCODED">Hardcoded Quiz</option>-->
+        <option value="" disabled selected>Select Method</option>
+        <option value="API">API Quiz</option>
+        <option value="AI">AI Quiz</option>
+      </select>
+    </p>
+
+    <p>
+      <label class="select-style" for="quizId">Select a Category</label><br />
+      <select name="quizId" id="quizId" [(ngModel)]="_quizId" required>
+        <option value="" disabled selected>Select Category</option>
+        <option *ngFor="let quiz of quizzes" [value]="quiz.id">{{ quiz.quizName }}</option>
+      </select>
+    </p>
+
+    <p  *ngIf="showDifficulty">
+      <label class="select-style" for="difficulty">Select Difficulty</label><br />
+      <select name="difficulty" id="difficulty" [(ngModel)]="difficulty" required>
+        <option value="" disabled selected>Select difficulty</option>
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+    </p>
+    <br>
+    <p >
+      <button class="startButton" (click)="start()">Start Quiz</button>
+    </p>
+  </div>
+</section>

@@ -1,0 +1,70 @@
+
+
+<section>
+  <!-- default view: shows placeholder or quiz name -->
+  @if (view==='start') {
+    <div>
+      <p>wait for start..</p>
+    </div>
+  } @else {
+    <h1 class="text-center">{{quizName}}</h1>
+  }
+
+  <!-- question view: shows the question and the option buttons -->
+  @if (view==='question') {
+    @if (question) {
+      <div>
+        <p>{{question.questionText}}</p>
+          @for (option of question.options; track option) {
+              <button class="quizAnswerButton" id="{{option}}" (click)="answer(option)">{{option}}</button>
+              <br/>
+          }
+        <br/>
+      </div>
+    }
+  }
+
+  <!-- answer view: shows the question and the disabled option buttons -->
+  <!-- the correct and the user answer are color-coded -->
+  @if (view==='answer') {
+    @if (question && correctAnswer) {
+    <div>
+      <p>{{question.questionText}} Correct: <b><span>{{isCorrect}}</span></b></p>
+
+      @for (option of question.options; track option) {
+        @if (option===correctAnswer) {
+          <button disabled class="quizAnswerButton" style="background-color: #00cd00" id="{{option}}" (click)="answer(option)">{{option}}</button>
+        } @else if (option===submittedAnswer && !isCorrect) {
+          <button disabled class="quizAnswerButton" style="background-color: #cd0000" id="{{option}}" (click)="answer(option)">{{option}}</button>
+        } @else {
+          <button disabled class="quizAnswerButton" id="{{option}}" (click)="answer(option)">{{ option }}
+          </button>
+        }
+        <br/>
+      }
+      <br/>
+    </div>
+    <!-- button to get the next question -->
+    <button (click)="next()">Next</button>
+    }
+  }
+
+  <!-- score view: shows the total score and time of the sessions -->
+  @if (view==='score') {
+
+    <p class="text-center">
+      <b><span>{{playerName}}</span></b> final score: <b><span>{{score}}</span></b> of <b><span>{{count}}</span></b>
+    </p>
+    <p class="text-center">
+      finished in <b><span>{{time}}</span></b> s.
+    </p>
+    <!-- buttons to navigate to the next page -->
+    <button (click)="finish('/main')">Home</button>
+    <button (click)="finish('/leaderboard')">Leaderboard</button>
+    <button (click)="finish('/quiz')">Next Quiz</button>
+
+  }
+
+
+
+</section>

@@ -1,0 +1,116 @@
+.title {
+  color: #5da2c4;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+section {
+  font-size: 24pt;
+}
+
+form * {
+  box-sizing: border-box;
+}
+
+form {
+  background-color: white;
+  padding: 40px;
+  border-radius: 12px;
+  width: 360px;
+  max-width: 90%;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+header {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  color: #000000;
+  text-align: center;
+  border-bottom: 1px dotted #5da2c4;
+  padding-bottom: 10px;
+}
+
+input {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #5da2c4;
+  height: 48px;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 5px 12px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+button {
+  background-color: #5da2c4;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  height: 50px;
+  width: 100%;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 24px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+
+button:hover {
+  background-color: rgba(93, 162, 196, 0.85);
+}
+
+select {
+  background-color: #5da2c4;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  height: 50px;
+  width: 100%;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 24px;
+  text-align: center;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+select:hover {
+  background-color: rgba(93, 162, 196, 0.85);
+}
+
+
+.link-text {
+  color: #5da2c4;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-top: 10px;
+}
+
+.error-message {
+  color: #c01f26;
+  margin-top: 10px;
+}
+
+@media (max-width: 500px) {
+  form {
+    width: 80%;
+    min-height: 300px;
+    padding: 25px;
+  }
+
+  header {
+    font-size: 28px;
+  }
+
+  input {
+    height: 44px;
+    font-size: 15px;
+  }
+
+  button {
+    height: 44px;
+    font-size: 15px;
+  }
+}

@@ -1,0 +1,51 @@
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+.responsive-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 500px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.responsive-table thead {
+  background-color: #5da2c4;
+}
+
+.responsive-table th {
+  padding: 15px;
+  text-align: left;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.responsive-table td {
+  padding: 14px;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  font-size: 15px;
+}
+
+.responsive-table tr:last-child td {
+  border-bottom: none;
+}
+
+.responsive-table tr:hover td {
+  background-color: #f1f7fb;
+  transition: background-color 0.3s ease;
+}
+
+@media (max-width: 600px) {
+  .responsive-table th,
+  .responsive-table td {
+    padding: 10px;
+    font-size: 14px;
+  }
+}

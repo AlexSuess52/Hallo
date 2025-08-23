@@ -1,0 +1,44 @@
+<nav class="header-bar">
+
+  <div class="left-nav">
+    <span class="app-title">Quiz App</span>
+
+    <div class="nav-links">
+      <!-- dynamic route: Home for logged-in users, Login otherwise -->
+      <a [routerLink]="playerId ? '/' : '/login'" class="nav-button">
+        {{ playerId ? 'Home' : 'Login' }}
+      </a>
+      <a routerLink="/players" class="nav-button">Players</a>
+      <a routerLink="/leaderboard" class="nav-button">Leaderboard</a>
+      @if (playerId) {
+        <a routerLink="/quiz" class="nav-button">Quiz</a>
+      }
+    </div>
+  </div>
+
+  <div class="central-nav">
+    <h1>Willkommen beim Quiz{{ playerName ? ', ' + playerName : '' }}!</h1>
+
+    @if (playerId != '') {
+      <p>Deine ID: {{ playerId }}</p>
+    }
+
+    @if (expTimestamp > 0) {
+      <p>Token läuft ab in {{ tokenExpiresInMinutes }} Minuten {{ tokenExpiresInSeconds }} Sekunden</p>
+    }
+  </div>
+
+
+
+  <div class="right-nav">
+    @if (!playerId) {
+      <button class="nav-button-right" (click)="redirectToRegister()">Register</button>
+    }
+    @if (playerId) {
+      <button class="nav-button-right" (click)="logout()">Logout</button>
+    }
+  </div>
+
+
+
+</nav>

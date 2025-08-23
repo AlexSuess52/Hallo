@@ -1,0 +1,50 @@
+/* defines the background of the base layout */
+.layout-background {
+  background-color: #f2e9d0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* content container which is underneath the header */
+.content-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 50px;
+}
+
+/* main container for the SPA content */
+.main-container {
+  width: 100%;
+  max-width: 1000px;
+  min-width: 300px;
+
+  height: 100%;
+  min-height: 400px;
+  max-height: 90%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* make it responsive for mobile devices */
+@media (max-width: 600px) {
+  .content-container {
+    padding: 0 20px;
+  }
+
+  .main-container {
+    min-width: 200px;
+    min-height: 300px;
+  }
+}
+
+@media (max-height: 500px) {
+  .main-container {
+    min-height: 200px;
+  }
+}
