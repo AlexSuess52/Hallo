@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuizDesktop.RegisterPage"
+             xmlns:viewmodel="clr-namespace:QuizDesktop.ViewModel"
+             x:DataType="viewmodel:RegisterViewModel"
+             BackgroundColor="#F2E9D0">
+
+    <VerticalStackLayout Spacing="0">
+
+        <!-- HEADER -->
+        <Grid HeightRequest="110"
+              BackgroundColor="#5DA2C4"
+              Padding="20,0"
+              VerticalOptions="Start"
+              HorizontalOptions="Fill"
+              ZIndex="1">
+
+            <Label Text="QuizDesktop"
+                   FontSize="32"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   CharacterSpacing="1"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />
+        </Grid>
+
+        <!-- REGISTER CONTENT -->
+        <Grid VerticalOptions="FillAndExpand"
+              Padding="20"
+              RowDefinitions="*, Auto, *"
+              ColumnDefinitions="*">
+               
+            <BoxView Grid.Row="0" HeightRequest="60" BackgroundColor="#F2E9D0" />
+
+            <!-- Register-Form -->
+            <Frame Grid.Row="1"
+                   BackgroundColor="White"
+                   CornerRadius="12"
+                   Padding="30"
+                   WidthRequest="360"
+                   MinimumWidthRequest="280"
+                   HasShadow="True"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center">
+
+                <VerticalStackLayout Spacing="20">
+
+                    <Label Text="Register"
+                           FontSize="28"
+                           FontAttributes="Bold"
+                           TextColor="Black"
+                           HorizontalOptions="Center"
+                           Margin="0,0,0,10" />
+
+                    <Entry Placeholder="Username"
+                           Text="{Binding Username}"
+                           BackgroundColor="White"
+                           TextColor="Black"
+                           HeightRequest="48"
+                           Margin="0,0,0,10" />
+
+                    <Entry Placeholder="Password"
+                           IsPassword="True"
+                           Text="{Binding Password}"
+                           BackgroundColor="White"
+                           TextColor="Black"
+                           HeightRequest="48"
+                           Margin="0,0,0,10" />
+
+                    <Entry Placeholder="Email (optional)"
+                           Text="{Binding Email}"
+                           BackgroundColor="White"
+                           TextColor="Black"
+                           HeightRequest="48"
+                           Margin="0,0,0,10" />
+
+                    <Button Text="Register"
+                            Command="{Binding RegisterCommand}"
+                            BackgroundColor="#5DA2C4"
+                            TextColor="White"
+                            CornerRadius="6"
+                            HeightRequest="50"
+                            FontAttributes="Bold"
+                            FontSize="16" />
+                    
+                    
+                    <Button Text="Back to Login"
+                            Command="{Binding BackToLoginCommand}"
+                            BackgroundColor="#5DA2C4"
+                            TextColor="White"
+                            CornerRadius="6"
+                            HeightRequest="50"
+                            FontAttributes="Bold"
+                            FontSize="16" />
+
+                </VerticalStackLayout>
+            </Frame>
+            
+            <BoxView Grid.Row="2" />
+
+        </Grid>
+
+    </VerticalStackLayout>
+
+</ContentPage>

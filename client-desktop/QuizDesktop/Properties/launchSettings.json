@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MauiBasicProject": {
+      "commandName": "Project",
+      "dotnetRunMessages": true
+    }
+  }
+}

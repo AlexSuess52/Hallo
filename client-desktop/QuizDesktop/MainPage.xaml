@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QuizDesktop.MainPage"
+             xmlns:model="clr-namespace:QuizDesktop.Models"
+             xmlns:global="clr-namespace:"
+             x:DataType="global:MainViewModel"
+             BackgroundColor="#F2E9D0">
+
+    <VerticalStackLayout Spacing="0">
+
+        <!-- HEADER -->
+        <Grid HeightRequest="110"
+              BackgroundColor="#5DA2C4"
+              Padding="20,0"
+              VerticalOptions="Start"
+              HorizontalOptions="Fill">
+
+            <Label Text="QuizDesktop"
+                   FontSize="32"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   CharacterSpacing="1"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />
+            
+            <Button Text="Logout"
+                    Command="{Binding LogoutCommand}"
+                    BackgroundColor="Transparent"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    BorderColor="White"
+                    BorderWidth="1"
+                    CornerRadius="5"
+                    Padding="6,0"
+                    HeightRequest="40"
+                    WidthRequest="100"
+                    HorizontalOptions="End"
+                    Margin="0,0,20,0"
+                    VerticalOptions="Center" />
+        </Grid>
+
+        <!-- MAIN CONTENT -->
+
+        <VerticalStackLayout Padding="20" Spacing="20" HorizontalOptions="Fill">
+
+            <VerticalStackLayout HorizontalOptions="Center" WidthRequest="360" Spacing="20" Margin="0,20,0,0">
+                <Button Text="Players"
+                        Command="{Binding GetAllPlayersCommand}"
+                        BackgroundColor="#5DA2C4"
+                        TextColor="White"
+                        CornerRadius="6"
+                        HeightRequest="50"
+                        FontAttributes="Bold"
+                        FontSize="16" />
+
+                <Button Text="Leaderboard"
+                        Command="{Binding ShowLeaderboardCommand}"
+                        BackgroundColor="#5DA2C4"
+                        TextColor="White"
+                        CornerRadius="6"
+                        HeightRequest="50"
+                        FontAttributes="Bold"
+                        FontSize="16" />
+            </VerticalStackLayout>
+
+            <Label Text="Registered Players"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="Black"
+                   Margin="0,30,0,10"
+                   HorizontalOptions="Center"
+                   IsVisible="{Binding ShowPlayersTable}" />
+
+            <!-- PLAYERS TABLE -->
+            <Frame BackgroundColor="White"
+                   CornerRadius="12"
+                   Padding="0"
+                   HasShadow="False"
+                   BorderColor="#5DA2C4"
+                   Margin="0,0,0,20"
+                   HorizontalOptions="Center"
+                   WidthRequest="700"
+                   HeightRequest="700"
+                   IsVisible="{Binding ShowPlayersTable}">
+
+                <Grid RowDefinitions="Auto, *">
+
+                    <!-- Table Head -->
+                    <Grid ColumnDefinitions="*, *, *, *" Padding="20,15" BackgroundColor="#5DA2C4">
+                        <Label Text="ID" TextColor="White" FontAttributes="Bold" Grid.Column="0" />
+                        <Label Text="Name" TextColor="White" FontAttributes="Bold" Grid.Column="1" />
+                        <Label Text="Email" TextColor="White" FontAttributes="Bold" Grid.Column="2" />
+                        <Label Text="Created" TextColor="White" FontAttributes="Bold" Grid.Column="3" />
+                    </Grid>
+
+                    <!-- Table Content with scrollbar -->
+                    <CollectionView ItemsSource="{Binding Players}"
+                                    SelectionMode="None"
+                                    Grid.Row="1">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:PlayerResponse">
+                                <Grid ColumnDefinitions="*, *, *, *" Padding="20,15" BackgroundColor="White">
+                                    <Label Text="{Binding Id}" Grid.Column="0" TextColor="Black" />
+                                    <Label Text="{Binding Name}" Grid.Column="1" TextColor="Black" />
+                                    <Label Text="{Binding UserEmail}" Grid.Column="2" TextColor="Black" />
+                                    <Label Text="{Binding CreatedAt, StringFormat='{0:dd.MM.yyyy HH:mm}'}"
+                                           Grid.Column="3" TextColor="Black" />
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+            </Frame>
+
+            <Label Text="Leaderboard"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="Black"
+                   Margin="0,30,0,10"
+                   HorizontalOptions="Center"
+                   IsVisible="{Binding ShowLeaderboardTable}" />
+
+            <!-- LEADERBOARD TABLE -->
+            <Frame BackgroundColor="White"
+                   CornerRadius="12"
+                   Padding="0"
+                   HasShadow="False"
+                   BorderColor="#5DA2C4"
+                   Margin="0,0,0,20"
+                   HorizontalOptions="Center"
+                   WidthRequest="700"
+                   HeightRequest="700"
+                   IsVisible="{Binding ShowLeaderboardTable}">
+
+                <Grid RowDefinitions="Auto, *">
+
+                    <!-- Table Head -->
+                    <Grid ColumnDefinitions="*, *, *, *, *" Padding="20,15" BackgroundColor="#5DA2C4">
+                        <Label Text="Rank" TextColor="White" FontAttributes="Bold" Grid.Column="0" />
+                        <Label Text="Name" TextColor="White" FontAttributes="Bold" Grid.Column="1" />
+                        <Label Text="Total Score" TextColor="White" FontAttributes="Bold" Grid.Column="2" />
+                        <Label Text="Time (s)" TextColor="White" FontAttributes="Bold" Grid.Column="3" />
+                        <Label Text="Sessions" TextColor="White" FontAttributes="Bold" Grid.Column="4" />
+                    </Grid>
+
+                    <!-- Table Content -->
+                    <CollectionView ItemsSource="{Binding Leaderboard}"
+                                    SelectionMode="None"
+                                    Grid.Row="1">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:LeaderboardResponse">
+                                <Grid ColumnDefinitions="*, *, *, *, *" Padding="20,15" BackgroundColor="White">
+                                    <Label Text="{Binding Rank}" Grid.Column="0" TextColor="Black" />
+                                    <Label Text="{Binding PlayerName}" Grid.Column="1" TextColor="Black" />
+                                    <Label Text="{Binding TotalScore}" Grid.Column="2" TextColor="Black" />
+                                    <Label Text="{Binding TotalTime, StringFormat='{0:0}'}" Grid.Column="3"
+                                           TextColor="Black" />
+                                    <Label Text="{Binding SessionsPlayed}" Grid.Column="4" TextColor="Black" />
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                </Grid>
+            </Frame>
+        </VerticalStackLayout>
+
+    </VerticalStackLayout>
+
+</ContentPage>
