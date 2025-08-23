@@ -1,0 +1,40 @@
+@AspNetBackend_HostAddress = http://localhost:5221
+@token = 
+@refresh = 
+
+// test registristation
+POST {{AspNetBackend_HostAddress}}/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "test-user",
+  "password": "geheim123"
+}
+
+###
+
+// test login with token
+POST {{AspNetBackend_HostAddress}}/api/auth/login
+Content-Type: application/json
+
+{
+  "name": "test-user",
+  "password": "geheim123"
+}
+
+###
+
+// refresh the token
+POST {{AspNetBackend_HostAddress}}/api/auth/refresh-token
+Content-Type: application/json
+
+{
+  "id": 5, 
+  "refreshToken": "{{refresh}}"
+}
+
+###
+
+// get request with authentication token
+GET {{AspNetBackend_HostAddress}}/api/auth/authenticate
+Authorization: Bearer {{token}}
