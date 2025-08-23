@@ -1,0 +1,10 @@
+geography
+science
+film
+society_and_culture
+music
+arts_and_literature
+history
+general_knowledge
+sport
+words

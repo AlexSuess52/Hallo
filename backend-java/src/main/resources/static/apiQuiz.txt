@@ -1,0 +1,10 @@
+Geography Quiz, A quiz about the world
+Science Quiz, Do you understand the world?
+Film Quiz, Delve into artistic history
+Society and Culture Quiz, How do Humans work together?
+Music Quiz, Words about Sounds
+Arts and Literature Quiz, Have you seen many Museums?
+History Quiz, A Quiz about the past
+General Knowledge Quiz, Do you know Random Facts?
+Sport Quiz, A Quiz about athletic achievements
+Words Quiz, Words do you speak them?
