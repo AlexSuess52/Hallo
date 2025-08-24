@@ -1,0 +1,60 @@
+services:
+  angular-frontend:
+    build:
+      context: ../frontend-web/AngularFrontend
+      dockerfile: Dockerfile
+    container_name: angular-frontend
+    ports:
+      - "4200:80"  # http://localhost:4200
+    depends_on:
+      - dotnet-backend
+      - java-backend
+
+  dotnet-backend:
+    build:
+      context: ../backend-dotnet/AspNetBackend
+      dockerfile: Dockerfile
+    container_name: dotnet-backend
+    ports:
+      - "5200:80"  #http://localhost:5200
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:80
+      ConnectionStrings__AspNetBackend: Host=postgres-db;Port=5432;Database=quiz-db;Username=quiz-db;Password=quiz-db
+    depends_on:
+      postgres-db:
+        condition: service_healthy
+        
+  java-backend:
+    build:
+      context: ../backend-java
+      dockerfile: Dockerfile
+    container_name: java-backend
+    ports:
+      - "8080:8080"  #http://localhost:8080
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - openai.api.key=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
+    depends_on:
+      postgres-db:
+        condition: service_healthy
+
+  postgres-db:
+    image: postgres:16
+    restart: unless-stopped
+    container_name: postgres-db
+    ports:
+      - "5432:5432"  #http://localhost:5433
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-db:/docker-entrypoint-initdb.d
+    env_file:
+      - .envs/.postgres
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U quiz-db" ]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+volumes:
+  postgres_data: {}
